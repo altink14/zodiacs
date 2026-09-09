@@ -18,7 +18,7 @@
   const badges = SIGNS.map((s, i) => {
     const a = document.createElement('a');
     a.className = 'badge';
-    a.href = 'signs/' + s.id + '.html';
+    a.href = s.id + '.html';
     a.style.setProperty('--c', s.color);
     a.style.setProperty('--ci', s.ink);
     a.setAttribute('aria-label', s.name + ' — ' + s.branch + ' ' + s.cn);
@@ -67,7 +67,7 @@
       glyph.textContent = s.branch;
       who.innerHTML = s.name + '<span class="cn">' + s.cn + '</span>';
       pill.innerHTML = '<span class="cn">' + s.branch + '时</span>' + s.hours.replace(' – ', ' – ');
-      open.href = 'signs/' + s.id + '.html';
+      open.href = s.id + '.html';
       open.textContent = 'Read about the ' + s.name;
       document.documentElement.style.setProperty('--accent', s.color);
       history.replaceState(null, '', '#' + s.id);

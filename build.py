@@ -3,14 +3,14 @@
 
     python3 build.py
 
-Writes index.html, signs/<sign>.html and assets/zodiac-data.js.
+Writes index.html, <sign>.html and zodiac-data.js (flat layout for GitHub Pages).
 No dependencies beyond the Python standard library.
 """
 import json
 from pathlib import Path
 
 ROOT = Path(__file__).parent
-DATA = json.loads((ROOT / "data" / "zodiac.json").read_text(encoding="utf-8"))
+DATA = json.loads((ROOT / "zodiac.json").read_text(encoding="utf-8"))
 SIGNS = DATA["signs"]
 META = DATA["meta"]
 BY_ID = {s["id"]: s for s in SIGNS}
@@ -55,12 +55,12 @@ def build_index():
 <title>Zodiacs — the twelve Chinese zodiac signs</title>
 <meta name="description" content="An interactive wheel of the twelve Chinese zodiac animals. Pick a sign to learn its hours, element, years, legend and compatibility.">
 {FONTS}
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="bar">
-  <a class="brand" href="./">Zodiacs<span class="cn">生肖</span></a>
-  <nav><a href="signs/rat.html">Signs</a><a href="https://github.com/">GitHub</a></nav>
+  <a class="brand" href="index.html">Zodiacs<span class="cn">生肖</span></a>
+  <nav><a href="rat.html">Signs</a><a href="https://github.com/altink14/zodiacs">GitHub</a></nav>
 </header>
 
 <main class="stage">
@@ -70,7 +70,7 @@ def build_index():
       <p class="glyph cn" id="glyph" aria-live="polite">子</p>
       <div class="who" id="who"></div>
       <div class="pill" id="pill"></div>
-      <a class="open" id="open" href="signs/rat.html">Read about the Rat</a>
+      <a class="open" id="open" href="rat.html">Read about the Rat</a>
     </div>
   </div>
   <div class="controls">
@@ -81,8 +81,8 @@ def build_index():
 </main>
 <p class="hint">Click any animal to open its page. The wheel starts on the sign that rules the current hour.</p>
 
-<script src="assets/zodiac-data.js"></script>
-<script src="assets/wheel.js"></script>
+<script src="zodiac-data.js"></script>
+<script src="wheel.js"></script>
 </body>
 </html>
 """
@@ -122,12 +122,12 @@ def build_sign(sign, i):
 <title>{sign["name"]} {sign["cn"]} — Zodiacs</title>
 <meta name="description" content="The {sign["name"]} in the Chinese zodiac: hours, element, years, the Great Race legend, traditional character and compatibility.">
 {FONTS}
-<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="style.css">
 <style>:root{{--accent:{sign["color"]};--accent-ink:{sign["ink"]};}}</style>
 </head>
 <body class="sign-page">
 <header class="bar">
-  <a class="brand" href="../">Zodiacs<span class="cn">生肖</span></a>
+  <a class="brand" href="index.html">Zodiacs<span class="cn">生肖</span></a>
   <nav>
     <a class="neighbor" href="{prev_s["id"]}.html"><span class="dot" style="--c:{prev_s["color"]}"></span>{prev_s["name"]}</a>
     <a class="neighbor" href="{next_s["id"]}.html">{next_s["name"]}<span class="dot" style="--c:{next_s["color"]}"></span></a>
@@ -208,12 +208,11 @@ def build_sign(sign, i):
 </body>
 </html>
 """
-    (ROOT / "signs" / f"{sign['id']}.html").write_text(html, encoding="utf-8")
+    (ROOT / f"{sign['id']}.html").write_text(html, encoding="utf-8")
 
 
 def main():
-    (ROOT / "signs").mkdir(exist_ok=True)
-    (ROOT / "assets" / "zodiac-data.js").write_text(
+    (ROOT / "zodiac-data.js").write_text(
         "window.ZODIAC = " + json.dumps(DATA, ensure_ascii=False, indent=2) + ";\n", encoding="utf-8")
     build_index()
     for i, s in enumerate(SIGNS):

@@ -6,12 +6,12 @@
 <title>Zodiacs — the twelve Chinese zodiac signs</title>
 <meta name="description" content="An interactive wheel of the twelve Chinese zodiac animals. Pick a sign to learn its hours, element, years, legend and compatibility.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="bar">
-  <a class="brand" href="./">Zodiacs<span class="cn">生肖</span></a>
-  <nav><a href="signs/rat.html">Signs</a><a href="https://github.com/">GitHub</a></nav>
+  <a class="brand" href="index.html">Zodiacs<span class="cn">生肖</span></a>
+  <nav><a href="rat.html">Signs</a><a href="https://github.com/altink14/zodiacs">GitHub</a></nav>
 </header>
 
 <main class="stage">
@@ -21,7 +21,7 @@
       <p class="glyph cn" id="glyph" aria-live="polite">子</p>
       <div class="who" id="who"></div>
       <div class="pill" id="pill"></div>
-      <a class="open" id="open" href="signs/rat.html">Read about the Rat</a>
+      <a class="open" id="open" href="rat.html">Read about the Rat</a>
     </div>
   </div>
   <div class="controls">
@@ -32,7 +32,7 @@
 </main>
 <p class="hint">Click any animal to open its page. The wheel starts on the sign that rules the current hour.</p>
 
-<script src="assets/zodiac-data.js"></script>
-<script src="assets/wheel.js"></script>
+<script src="zodiac-data.js"></script>
+<script src="wheel.js"></script>
 </body>
 </html>

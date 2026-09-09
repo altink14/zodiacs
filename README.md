@@ -2,7 +2,7 @@
 
 An interactive wheel of the twelve Chinese zodiac animals. Click any animal to open a page covering its earthly branch, hours, month, direction, element, years (with heavenly-stem element and New Year start dates), its place in the Great Race legend, traditional character, and compatibility.
 
-**Live demo:** enable GitHub Pages on this repo (Settings → Pages → Deploy from branch → `main` / root) and open the URL it gives you.
+**Live site:** https://altink14.github.io/zodiacs/
 
 ## Run locally
 
@@ -14,13 +14,13 @@ python3 -m http.server 8000
 
 ## Editing the content
 
-All facts live in one file: `data/zodiac.json`. After editing it, regenerate the pages:
+All facts live in one file: `zodiac.json`. After editing it, regenerate the pages:
 
 ```bash
 python3 build.py
 ```
 
-This rewrites `index.html`, `signs/*.html` and `assets/zodiac-data.js`.
+This rewrites `index.html`, the twelve `<animal>.html` pages and `zodiac-data.js`.
 
 ## Accuracy notes
 
@@ -32,13 +32,13 @@ This rewrites `index.html`, `signs/*.html` and `assets/zodiac-data.js`.
 ## Structure
 
 ```
-index.html            the wheel
-signs/<animal>.html   one page per sign (generated)
-assets/style.css      shared styles
-assets/wheel.js       wheel behaviour
-assets/zodiac-data.js data for the wheel (generated)
-data/zodiac.json      single source of truth
-build.py              generator
+index.html         the wheel
+<animal>.html      one page per sign (generated)
+style.css          shared styles
+wheel.js           wheel behaviour
+zodiac-data.js     data for the wheel (generated)
+zodiac.json        single source of truth
+build.py           generator
 ```
 
 ## Credits
