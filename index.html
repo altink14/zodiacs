@@ -3,25 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Zodiacs — the twelve Chinese zodiac signs</title>
-<meta name="description" content="An interactive wheel of the twelve Chinese zodiac animals. Pick a sign to learn its hours, element, years, legend and compatibility.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+<title>Zodiacs — the twelve zodiac signs</title>
+<meta name="description" content="An interactive wheel of the twelve zodiac signs. Pick a sign to learn its dates, element, ruling planet, myth, traits and compatibility.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Sans+Symbols&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 <header class="bar">
-  <a class="brand" href="index.html">Zodiacs<span class="cn">生肖</span></a>
-  <nav><a href="rat.html">Signs</a><a href="https://github.com/altink14/zodiacs">GitHub</a></nav>
+  <a class="brand" href="index.html">Zodiacs</a>
+  <nav><a href="aries.html">Signs</a><a href="https://github.com/altink14/zodiacs">GitHub</a></nav>
 </header>
 
 <main class="stage">
   <div class="wheel" aria-label="Wheel of the twelve zodiac signs">
     <div class="ring" id="ring"></div>
     <div class="center">
-      <p class="glyph cn" id="glyph" aria-live="polite">子</p>
+      <p class="glyph sym" id="glyph" aria-live="polite">♈</p>
       <div class="who" id="who"></div>
       <div class="pill" id="pill"></div>
-      <a class="open" id="open" href="rat.html">Read about the Rat</a>
+      <a class="open" id="open" href="aries.html">Read about Aries</a>
     </div>
   </div>
   <div class="controls">
@@ -30,7 +31,7 @@
     <button id="next" aria-label="Next sign"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
   </div>
 </main>
-<p class="hint">Click any animal to open its page. The wheel starts on the sign that rules the current hour.</p>
+<p class="hint">Click any sign to open its page. The wheel starts on today's sign.</p>
 
 <script src="zodiac-data.js"></script>
 <script src="wheel.js"></script>

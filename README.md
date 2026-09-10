@@ -1,6 +1,6 @@
-# Zodiacs 生肖
+# Zodiacs
 
-An interactive wheel of the twelve Chinese zodiac animals. Click any animal to open a page covering its earthly branch, hours, month, direction, element, years (with heavenly-stem element and New Year start dates), its place in the Great Race legend, traditional character, and compatibility.
+An interactive wheel of the twelve zodiac signs. Click any sign to open a page covering its dates, symbol, element, modality, ruling planet, polarity, constellation facts, myth, traditional character and compatibility.
 
 **Live site:** https://altink14.github.io/zodiacs/
 
@@ -20,30 +20,30 @@ All facts live in one file: `zodiac.json`. After editing it, regenerate the page
 python3 build.py
 ```
 
-This rewrites `index.html`, the twelve `<animal>.html` pages and `zodiac-data.js`.
+This rewrites `index.html`, the twelve `<sign>.html` pages and `zodiac-data.js`.
 
 ## Accuracy notes
 
-- **Hours, months, directions, fixed element and yin/yang** follow the twelve earthly branches (地支), which is the classical basis for the zodiac. Months are given by solar terms (the traditional method) and are approximate to ±1 day depending on the year.
-- **Years** begin at Chinese New Year, not January 1. Start dates for 1996–2031 are included; the year's element comes from the heavenly stem (year mod 10).
-- **Compatibility** uses the classical 三合 (trines), 六合 (six harmonies) and 六冲 (six clashes) groupings.
-- **Personality traits and the Great Race** are folklore. They are presented as traditional attributions, not facts. Things that vary widely between sources (lucky numbers, colours, flowers, yearly "horoscopes") were deliberately left out.
+- **Dates** are the standard tropical (Western) sun-sign ranges. The exact changeover between signs shifts by about a day depending on the year and time zone, so people born on a boundary day should check an ephemeris for their birth year.
+- **Element, modality, polarity and rulers** follow standard Western astrology. Where a sign has both a modern and a traditional ruler (Scorpio, Aquarius, Pisces), both are listed.
+- **Constellation sizes and brightest stars** are astronomical facts about the constellations that share the signs' names. The pages explain that signs and constellations are not the same thing.
+- **Personality traits, compatibility and myths** are traditional attributions and folklore. They are presented as such, not as facts about people. Things that vary widely between sources (lucky numbers, colours, daily horoscopes) were deliberately left out.
 
 ## Structure
 
 ```
-index.html         the wheel
-<animal>.html      one page per sign (generated)
-style.css          shared styles
-wheel.js           wheel behaviour
-zodiac-data.js     data for the wheel (generated)
-zodiac.json        single source of truth
-build.py           generator
+index.html      the wheel
+<sign>.html     one page per sign (generated)
+style.css       shared styles
+wheel.js        wheel behaviour
+zodiac-data.js  data for the wheel (generated)
+zodiac.json     single source of truth
+build.py        generator
 ```
 
 ## Credits
 
-Type: Noto Serif SC and Manrope via Google Fonts. Design inspired by circular 十二地支 clock wheels.
+Type: Cormorant Garamond, Manrope and Noto Sans Symbols via Google Fonts.
 
 ## License
 

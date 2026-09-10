@@ -21,15 +21,15 @@
     a.href = s.id + '.html';
     a.style.setProperty('--c', s.color);
     a.style.setProperty('--ci', s.ink);
-    a.setAttribute('aria-label', s.name + ' — ' + s.branch + ' ' + s.cn);
-    a.innerHTML = '<span class="b">' + s.branch + '</span><span class="a">' + s.cn + '</span>';
+    a.setAttribute('aria-label', s.name + ', ' + s.dates);
+    a.innerHTML = '<span class="b sym">' + s.glyph + '</span><span class="a">' + s.name + '</span>';
     a.addEventListener('mouseenter', () => { show(i, false); pause(); });
     a.addEventListener('focus', () => { show(i, false); pause(); });
     ring.appendChild(a);
     return a;
   });
 
-  // Start on whichever sign owns the current two-hour slot, unless the URL says otherwise.
+  // Start on today's sign, unless the URL says otherwise.
   const fromHash = SIGNS.findIndex(s => '#' + s.id === location.hash);
   let index = fromHash >= 0 ? fromHash : signForNow();
   let rotation = 0;
@@ -37,14 +37,19 @@
   let playing = true;
 
   function signForNow() {
-    // 23:00–00:59 → Rat (0), 01:00–02:59 → Ox (1), ...
-    const h = new Date().getHours();
-    return Math.floor(((h + 1) % 24) / 2);
+    // The sign whose date range contains today. Capricorn (Dec 22) wraps across New Year.
+    const d = new Date(), today = (d.getMonth() + 1) * 100 + d.getDate();
+    let best = -1, bestKey = -1;
+    SIGNS.forEach((s, k) => {
+      const key = s.startMonth * 100 + s.startDay;
+      if (key <= today && key > bestKey) { best = k; bestKey = key; }
+    });
+    return best >= 0 ? best : SIGNS.findIndex(s => s.id === 'capricorn');
   }
 
   function layout() {
     badges.forEach((b, i) => {
-      const angle = -90 + i * STEP;               // Rat starts at 12 o'clock
+      const angle = -90 + i * STEP;               // Aries starts at 12 o'clock
       const rad = angle * Math.PI / 180;
       b.style.left = 'calc(50% + ' + Math.cos(rad).toFixed(4) + ' * var(--R))';
       b.style.top = 'calc(50% + ' + Math.sin(rad).toFixed(4) + ' * var(--R))';
@@ -64,11 +69,11 @@
 
     const s = SIGNS[i];
     const paint = () => {
-      glyph.textContent = s.branch;
-      who.innerHTML = s.name + '<span class="cn">' + s.cn + '</span>';
-      pill.innerHTML = '<span class="cn">' + s.branch + '时</span>' + s.hours.replace(' – ', ' – ');
+      glyph.textContent = s.glyph;
+      who.innerHTML = s.name + '<span class="sub">' + s.symbol + '</span>';
+      pill.textContent = s.dates;
       open.href = s.id + '.html';
-      open.textContent = 'Read about the ' + s.name;
+      open.textContent = 'Read about ' + s.name;
       document.documentElement.style.setProperty('--accent', s.color);
       history.replaceState(null, '', '#' + s.id);
     };
